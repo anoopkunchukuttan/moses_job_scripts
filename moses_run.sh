@@ -51,7 +51,7 @@ else
     echo "Language model already exists ; skipping training language model" 
 fi    
 
-echo "Training model"
+echo "Training model started at: " `date`
 $SCRIPTS_ROOTDIR/training/train-model.perl -external-bin-dir $SMT_SYSTEM_DIR/bin \
         -root-dir "$WORKSPACE_DIR/moses_data" \
         -corpus "$WORKSPACE_DIR/cleaned/train.clean" \
@@ -60,20 +60,20 @@ $SCRIPTS_ROOTDIR/training/train-model.perl -external-bin-dir $SMT_SYSTEM_DIR/bin
         $TRAIN_MODEL_OPTS \
         > $WORKSPACE_DIR/log/training.out 2>$WORKSPACE_DIR/log/training.err
 
-echo "Running decoder on test set using untuned model"
+echo "Running decoder on test set using untuned model started at: " `date`
 
 $MOSES_CMD -config "$WORKSPACE_DIR/moses_data/model/moses.ini"  \
            -input-file "$parallel_corpus/test.$SRC_LANG" \
            $MOSES_DECODER_OPTS \
            > "$WORKSPACE_DIR/evaluation/test_no_tun.$TGT_LANG" 2> $WORKSPACE_DIR/log/test_no_tun.err
 
-echo "Evaluation without tuning" 
+echo "Evaluation without tuning started at: " `date`
 mkdir -p "$WORKSPACE_DIR/evaluation/results_wo_tuning"
 $JOB_SCRIPTS_DIR/evaluate_metrics.sh "$parallel_corpus/test.$TGT_LANG"  "$WORKSPACE_DIR/evaluation/test_no_tun.$TGT_LANG"  "$WORKSPACE_DIR/evaluation/results_wo_tuning"  "$TGT_LANG"
 
-echo "Tuning using MERT"
+echo "Tuning using MERT started at: " `date`
 
-nice $SCRIPTS_ROOTDIR/training/mert-moses.pl \
+$SCRIPTS_ROOTDIR/training/mert-moses.pl \
         "$parallel_corpus/tun.$SRC_LANG" \
         "$parallel_corpus/tun.$TGT_LANG" \
         "$MOSES_CMD"  \
@@ -83,15 +83,15 @@ nice $SCRIPTS_ROOTDIR/training/mert-moses.pl \
          $MERT_OPTS > \
          "$WORKSPACE_DIR/log/tuning.out" 2> "$WORKSPACE_DIR/log/tuning.err" 
 
-echo "Running decoder on test set using tuned model"
+echo "Running decoder on test set using tuned model started at: " `date`
 $MOSES_CMD -config "$WORKSPACE_DIR/tuning/moses.ini" \
            -input-file "$parallel_corpus/test.$SRC_LANG" \
            $MOSES_DECODER_OPTS > \
            "$WORKSPACE_DIR/evaluation/test.$TGT_LANG" 2> $WORKSPACE_DIR/log/test.err
 
-echo "Evaluation after tuning" 
+echo "Evaluation after tuning started at: " `date`  
 mkdir -p "$WORKSPACE_DIR/evaluation/results_with_tuning"
 $JOB_SCRIPTS_DIR/evaluate_metrics.sh "$parallel_corpus/test.$TGT_LANG" "$WORKSPACE_DIR/evaluation/test.$TGT_LANG" "$WORKSPACE_DIR/evaluation/results_with_tuning" "$TGT_LANG"
 
-echo "Run completed"
+echo "Run completed at " `date`
 

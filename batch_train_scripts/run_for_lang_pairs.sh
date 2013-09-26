@@ -16,9 +16,11 @@ JOB_SCRIPTS_DIR=`dirname \`dirname $0\``
 
 lang_pair_file=$1
 out_dir=$2
+config_template=$3
 
 while read lang_pair
 do
+
 
 lang1=`echo $lang_pair|cut -f 1 -d '-'`
 lang2=`echo $lang_pair|cut -f 2 -d '-'`
@@ -27,12 +29,13 @@ workspace_dir=$out_dir/$lang1-$lang2
 mkdir $workspace_dir
 
 # set parameters
-cat run_for_lang_pairs_template.conf | \
+cat $config_template | \
 sed "s,SRC_LANG_VAR,$lang1,g" | \
 sed "s,TGT_LANG_VAR,$lang2,g" \
 > $out_dir/run_for_lang_pairs_final.conf
 
-nohup $JOB_SCRIPTS_DIR/moses_run.sh  $outdir/run_for_lang_pairs_final.conf > $workspace_dir/run.log 2>&1 & 
-sleep 3
+echo "Processing for language pair" $lang1 "-" $lang2 "started at " `date`
+nohup $JOB_SCRIPTS_DIR/moses_run.sh  $outdir/run_for_lang_pairs_final.conf > $workspace_dir/run.log 2>&1  
+echo "Processing for language pair" $lang1 "-" $lang2 "finished at " `date`
 
 done < $lang_pair_file
