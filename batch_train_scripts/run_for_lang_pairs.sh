@@ -35,7 +35,7 @@ sed "s,TGT_LANG_VAR,$lang2,g" \
 > $out_dir/run_for_lang_pairs_final.conf
 
 echo "Processing for language pair" $lang1 "-" $lang2 "started at " `date`
-nohup $JOB_SCRIPTS_DIR/moses_run.sh  $out_dir/run_for_lang_pairs_final.conf > $workspace_dir/run.log 2>&1  
+$JOB_SCRIPTS_DIR/moses_run.sh  $out_dir/run_for_lang_pairs_final.conf 
 echo "Processing for language pair" $lang1 "-" $lang2 "finished at " `date`
 
 done < $lang_pair_file
