@@ -16,7 +16,7 @@ bleu_score=`cut -f 1 -d ',' $output_dir/bleu.txt | cut -f 2 -d '=' | tr -d [:spa
 
 ##### compute METEOR
 cd $METEOR_HOME
-java -Xmx512m -jar meteor-*.jar "$test_doc" $ref_doc -norm -l $language > $output_dir/meteor.txt
+java -Xmx512m -jar meteor-*.jar "$test_doc" $ref_doc -l $language > $output_dir/meteor.txt
 meteor_score=`tail -1 $output_dir/meteor.txt | cut -f 2 -d ':' | tr -d  [:space:]`
 
 ###### compute TER

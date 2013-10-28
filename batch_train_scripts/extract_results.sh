@@ -9,6 +9,8 @@
 workspace_dir=$1
 consolidated_results_file=$2
 
+rm $consolidated_results_file
+
 for lang_pair in `ls $workspace_dir`
 do
     lang1=`echo $lang_pair|cut -f 1 -d '-'`
