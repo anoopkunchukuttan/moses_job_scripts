@@ -1,5 +1,8 @@
-README
-======
+README for Moses Job Scripts
+============================
+
+Version 1.0
+
 'moses_job_scripts' is a toolkit to help in basic tasks for training and developing SMT systems. It contains:
 
 - Testbench to automate Moses-based SMT system training, tuning and evaluation (phrase based and factored)
@@ -81,4 +84,31 @@ Once the SMT environment is ready, it is pretty easy to use the workbench for ru
 Batch Operations
 ================
 To be documented
+
+Author
+------
+Anoop Kunchukuttan ( anoop.kunchukuttan@gmail.com )
+
+Revision Log 
+------------
+1.0 : Stable release
+
+
+LICENSE
+=======
+Copyright Anoop Kunchukuttan 2013 - present
+ 
+Moses Job Scripts is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Moses Job Scripts is distributed in the hope that it will be useful,
+       but WITHOUT ANY WARRANTY; without even the implied warranty of
+       MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+       GNU General Public License for more details.
+
+       You should have received a copy of the GNU General Public License
+       along with Moses Job Scripts.  If not, see <http://www.gnu.org/licenses/>.
+
 
