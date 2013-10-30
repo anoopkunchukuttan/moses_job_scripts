@@ -35,26 +35,26 @@ echo $run_tune
 # read configuration 
 . "$moses_run_params_file"
 
-# prepare workspace 
-if [ -d $WORKSPACE_DIR ]
-then 
-    rm -rf $WORKSPACE_DIR
-fi 
-
-mkdir "$WORKSPACE_DIR"           > /dev/null 2>&1    
-mkdir "$WORKSPACE_DIR/log" > /dev/null 2>&1    
-mkdir "$WORKSPACE_DIR/cleaned" > /dev/null 2>&1    
-mkdir "$WORKSPACE_DIR/lm" > /dev/null 2>&1    
-mkdir "$WORKSPACE_DIR/moses_data" > /dev/null 2>&1 
-mkdir "$WORKSPACE_DIR/tuning" > /dev/null 2>&1    
-mkdir "$WORKSPACE_DIR/evaluation" > /dev/null 2>&1 
-
-# copy parameters 
-cp $moses_run_params_file "$WORKSPACE_DIR/run_params.conf" 
-echo "Copied parameter file to \$WORKSPACE_DIR/run_params.conf"
-
 if [ $run_train -eq 0 ]
 then 
+    # prepare workspace 
+    if [ -d $WORKSPACE_DIR ]
+    then 
+        rm -rf $WORKSPACE_DIR
+    fi 
+    
+    mkdir "$WORKSPACE_DIR" > /dev/null 2>&1    
+    mkdir "$WORKSPACE_DIR/log" > /dev/null 2>&1    
+    mkdir "$WORKSPACE_DIR/cleaned" > /dev/null 2>&1    
+    mkdir "$WORKSPACE_DIR/lm" > /dev/null 2>&1    
+    mkdir "$WORKSPACE_DIR/moses_data" > /dev/null 2>&1 
+    mkdir "$WORKSPACE_DIR/tuning" > /dev/null 2>&1    
+    mkdir "$WORKSPACE_DIR/evaluation" > /dev/null 2>&1 
+    
+    # copy parameters 
+    cp $moses_run_params_file "$WORKSPACE_DIR/run_params.conf" 
+    echo "Copied parameter file to \$WORKSPACE_DIR/run_params.conf"
+
     echo "Cleaning (and lowercase the english only)"
     
     $SCRIPTS_ROOTDIR/training/clean-corpus-n.perl "$parallel_corpus/train" "$SRC_LANG" "$TGT_LANG" "$WORKSPACE_DIR/cleaned/train.clean" 1 50
