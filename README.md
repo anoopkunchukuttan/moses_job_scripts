@@ -29,17 +29,17 @@
 
 ##Directory layout for SMT software installation
 
-smt
- |---   giza-pp             (compiled giza++ source code)
- |---   bin                 (contains giza++ binaries - giza-pp/mkcls-v2/mkcls giza-pp/GIZA++-v2/GIZA++ giza-pp/GIZA++-v2/snt2cooc.out )
- |---   moses_job_scripts         (contains scripts to run the entire SMT workflow. It is the directory containing this README )
- |---   mosesdecoder        (moses decoder)
- |---   srilm               (srilm)
- |---   irstlm              (irstlm) [optional]
+smt  
+ |---   giza-pp             (compiled giza++ source code)   
+ |---   bin                 (contains giza++ binaries - giza-pp/mkcls-v2/mkcls giza-pp/GIZA++-v2/GIZA++ giza-pp/GIZA++-v2/snt2cooc.out )     
+ |---   moses_job_scripts        (contains scripts to run the entire SMT workflow. It is the directory containing this README )     
+ |---   mosesdecoder        (moses decoder)  
+ |---   srilm               (srilm)  
+ |---   irstlm              (irstlm) [optional]  
 
-smt_eval_metrics
- |---  meteor               (Meteor/meteor_indic)
- |---  ter                  (TER)
+smt_eval_metrics  
+ |---  meteor               (Meteor/meteor_indic)  
+ |---  ter                  (TER)  
 
 
 ##Using the testbench to train and evaluate a translation system
