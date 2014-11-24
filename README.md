@@ -67,6 +67,7 @@ Once the SMT environment is ready, it is pretty easy to use the workbench for ru
    The intermediate and final output are generated in the $WORKSPACE directory. 
 
    The workspace will contain the following directories: 
+
       -  `log`: contains various log files 
       -  `cleaned`: cleaned up corpus 
       -  `lm`: The target side language model 
