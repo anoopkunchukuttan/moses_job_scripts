@@ -68,22 +68,22 @@ Once the SMT environment is ready, it is pretty easy to use the workbench for ru
 
    The workspace will contain the following directories: 
 
-      -  `log`: contains various log files 
-      -  `cleaned`: cleaned up corpus 
-      -  `lm`: The target side language model 
-      -  `moses_data`: The intermediate files and model output after training 
-      -  `tuning`: The intermediate files and output generated after tuning 
-      -  `evaluation`: evaluation results 
-      -  `run_params.conf`: A copy of the config file for the experiment 
+-  `log`: contains various log files 
+-  `cleaned`: cleaned up corpus 
+-  `lm`: The target side language model 
+-  `moses_data`: The intermediate files and model output after training 
+-  `tuning`: The intermediate files and output generated after tuning 
+-  `evaluation`: evaluation results 
+-  `run_params.conf`: A copy of the config file for the experiment 
 
    The important files for observing the output are: 
 
-      -   `evaluation/test_no_tun.<tgt_lang>` : output from untuned model 
-      -  `evaluation/test.<tgt_lang>` : output from tuned model
-      -  `evaluation/results_wo_tuning/summary.txt` : evaluation results without tuning 
-      -  `evaluation/results_with_tuning/summary.txt`: evaluation results with tuned model 
-      -  `moses_data/model/moses.ini` : untuned model file
-      -  `tuning/moses.ini` : tuned model file
+-  `evaluation/test_no_tun.<tgt_lang>` : output from untuned model 
+-  `evaluation/test.<tgt_lang>` : output from tuned model
+-  `evaluation/results_wo_tuning/summary.txt` : evaluation results without tuning 
+-  `evaluation/results_with_tuning/summary.txt`: evaluation results with tuned model 
+-  `moses_data/model/moses.ini` : untuned model file
+-  `tuning/moses.ini` : tuned model file
 
 ##Batch Operations
 To be documented
