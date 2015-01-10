@@ -96,17 +96,30 @@ fi
 if [ $run_tune -eq 0 ]
 then 
     echo "Tuning using MERT started at: " `date`
-    
-    $SCRIPTS_ROOTDIR/training/mert-moses.pl \
+   
+    #$SCRIPTS_ROOTDIR/training/mert-moses.pl \
+    #        "$parallel_corpus/tun.$SRC_LANG" \
+    #        "$parallel_corpus/tun.$TGT_LANG" \
+    #        "$MOSES_CMD"  \
+    #        "$WORKSPACE_DIR/moses_data/model/moses.ini" \
+    #         --working-dir "$WORKSPACE_DIR/tuning" \
+    #         --rootdir "$SCRIPTS_ROOTDIR" \
+    #        $MERT_OPTS  > \
+    #         "$WORKSPACE_DIR/log/tuning.out" 2> "$WORKSPACE_DIR/log/tuning.err" 
+
+    cmd=`echo $SCRIPTS_ROOTDIR/training/mert-moses.pl \
             "$parallel_corpus/tun.$SRC_LANG" \
             "$parallel_corpus/tun.$TGT_LANG" \
             "$MOSES_CMD"  \
             "$WORKSPACE_DIR/moses_data/model/moses.ini" \
              --working-dir "$WORKSPACE_DIR/tuning" \
-             --rootdir "$SCRIPTS_ROOTDIR"
-             $MERT_OPTS > \
+             --rootdir "$SCRIPTS_ROOTDIR" \
+            $MERT_OPTS`  
+    echo $cmd	
+    eval $cmd	> \
              "$WORKSPACE_DIR/log/tuning.out" 2> "$WORKSPACE_DIR/log/tuning.err" 
     
+
     echo "Running decoder on test set using tuned model started at: " `date`
     $MOSES_CMD -config "$WORKSPACE_DIR/tuning/moses.ini" \
                -input-file "$parallel_corpus/test.$SRC_LANG" \
