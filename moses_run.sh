@@ -43,7 +43,7 @@ then
         rm -rf $WORKSPACE_DIR
     fi 
     
-    mkdir "$WORKSPACE_DIR" > /dev/null 2>&1    
+    mkdir -p "$WORKSPACE_DIR" > /dev/null 2>&1    
     mkdir "$WORKSPACE_DIR/log" > /dev/null 2>&1    
     mkdir "$WORKSPACE_DIR/cleaned" > /dev/null 2>&1    
     mkdir "$WORKSPACE_DIR/lm" > /dev/null 2>&1    
@@ -72,7 +72,7 @@ then
     fi    
     
     echo "Training model started at: " `date`
-    $SCRIPTS_ROOTDIR/training/train-model.perl -external-bin-dir $SMT_SYSTEM_DIR/bin \
+    $SCRIPTS_ROOTDIR/training/train-model.perl -external-bin-dir "$SMT_SYSTEM_DIR/bin" \
             -root-dir "$WORKSPACE_DIR/moses_data" \
             -corpus "$WORKSPACE_DIR/cleaned/train.clean" \
             -e "$TGT_LANG" \
@@ -123,6 +123,9 @@ then
     echo "Running decoder on test set using tuned model started at: " `date`
     $MOSES_CMD -config "$WORKSPACE_DIR/tuning/moses.ini" \
                -input-file "$parallel_corpus/test.$SRC_LANG" \
+	       -alignment-output-file "$WORKSPACE_DIR/evaluation/test.align.$TGT_LANG" \
+	       -n-best-list "$WORKSPACE_DIR/evaluation/test.nbest.$TGT_LANG" 10 distinct \
+	       -output-unknowns "$WORKSPACE_DIR/evaluation/test.oov.$TGT_LANG" \
                $MOSES_DECODER_OPTS > \
                "$WORKSPACE_DIR/evaluation/test.$TGT_LANG" 2> $WORKSPACE_DIR/log/test.err
     
