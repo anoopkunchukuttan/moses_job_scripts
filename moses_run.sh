@@ -80,16 +80,16 @@ then
             $TRAIN_MODEL_OPTS \
             > $WORKSPACE_DIR/log/training.out 2>$WORKSPACE_DIR/log/training.err
     
-    echo "Running decoder on test set using untuned model started at: " `date`
-    
-    $MOSES_CMD -config "$WORKSPACE_DIR/moses_data/model/moses.ini"  \
-               -input-file "$parallel_corpus/test.$SRC_LANG" \
-               $MOSES_DECODER_OPTS \
-               > "$WORKSPACE_DIR/evaluation/test_no_tun.$TGT_LANG" 2> $WORKSPACE_DIR/log/test_no_tun.err
-    
-    echo "Evaluation without tuning started at: " `date`
-    mkdir -p "$WORKSPACE_DIR/evaluation/results_wo_tuning"
-    $JOB_SCRIPTS_DIR/evaluate_metrics.sh "$parallel_corpus/test.$TGT_LANG"  "$WORKSPACE_DIR/evaluation/test_no_tun.$TGT_LANG"  "$WORKSPACE_DIR/evaluation/results_wo_tuning"  "$TGT_LANG"
+    #echo "Running decoder on test set using untuned model started at: " `date`
+    #
+    #$MOSES_CMD -config "$WORKSPACE_DIR/moses_data/model/moses.ini"  \
+    #           -input-file "$parallel_corpus/test.$SRC_LANG" \
+    #           $MOSES_DECODER_OPTS \
+    #           > "$WORKSPACE_DIR/evaluation/test_no_tun.$TGT_LANG" 2> $WORKSPACE_DIR/log/test_no_tun.err
+    #
+    #echo "Evaluation without tuning started at: " `date`
+    #mkdir -p "$WORKSPACE_DIR/evaluation/results_wo_tuning"
+    #$JOB_SCRIPTS_DIR/evaluate_metrics.sh "$parallel_corpus/test.$TGT_LANG"  "$WORKSPACE_DIR/evaluation/test_no_tun.$TGT_LANG"  "$WORKSPACE_DIR/evaluation/results_wo_tuning"  "$TGT_LANG"
 fi 
 
 
