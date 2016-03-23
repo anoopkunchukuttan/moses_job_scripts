@@ -58,6 +58,8 @@ then
     echo "Cleaning (and lowercase the english only)"
     
     $SCRIPTS_ROOTDIR/training/clean-corpus-n.perl "$parallel_corpus/train" "$SRC_LANG" "$TGT_LANG" "$WORKSPACE_DIR/cleaned/train.clean" 1 50
+    #cp $parallel_corpus/train.$SRC_LANG $WORKSPACE_DIR/cleaned/train.clean.$SRC_LANG
+    #cp $parallel_corpus/train.$TGT_LANG $WORKSPACE_DIR/cleaned/train.clean.$TGT_LANG
     
     echo "Number of sentences in parallel corpus after cleaning" 
     wc -l "$WORKSPACE_DIR/cleaned/train.clean.$SRC_LANG"
@@ -80,16 +82,16 @@ then
             $TRAIN_MODEL_OPTS \
             > $WORKSPACE_DIR/log/training.out 2>$WORKSPACE_DIR/log/training.err
     
-    echo "Running decoder on test set using untuned model started at: " `date`
-    
-    $MOSES_CMD -config "$WORKSPACE_DIR/moses_data/model/moses.ini"  \
-               -input-file "$parallel_corpus/test.$SRC_LANG" \
-               $MOSES_DECODER_OPTS \
-               > "$WORKSPACE_DIR/evaluation/test_no_tun.$TGT_LANG" 2> $WORKSPACE_DIR/log/test_no_tun.err
-    
-    echo "Evaluation without tuning started at: " `date`
-    mkdir -p "$WORKSPACE_DIR/evaluation/results_wo_tuning"
-    $JOB_SCRIPTS_DIR/evaluate_metrics.sh "$parallel_corpus/test.$TGT_LANG"  "$WORKSPACE_DIR/evaluation/test_no_tun.$TGT_LANG"  "$WORKSPACE_DIR/evaluation/results_wo_tuning"  "$TGT_LANG"
+    #echo "Running decoder on test set using untuned model started at: " `date`
+    #
+    #$MOSES_CMD -config "$WORKSPACE_DIR/moses_data/model/moses.ini"  \
+    #           -input-file "$parallel_corpus/test.$SRC_LANG" \
+    #           $MOSES_DECODER_OPTS \
+    #           > "$WORKSPACE_DIR/evaluation/test_no_tun.$TGT_LANG" 2> $WORKSPACE_DIR/log/test_no_tun.err
+    #
+    #echo "Evaluation without tuning started at: " `date`
+    #mkdir -p "$WORKSPACE_DIR/evaluation/results_wo_tuning"
+    #$JOB_SCRIPTS_DIR/evaluate_metrics.sh "$parallel_corpus/test.$TGT_LANG"  "$WORKSPACE_DIR/evaluation/test_no_tun.$TGT_LANG"  "$WORKSPACE_DIR/evaluation/results_wo_tuning"  "$TGT_LANG"
 fi 
 
 
