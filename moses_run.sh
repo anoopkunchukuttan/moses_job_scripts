@@ -98,7 +98,9 @@ fi
 if [ $run_tune -eq 0 ]
 then 
     echo "Tuning using MERT started at: " `date`
-  
+
+    rm -rf $WORKSPACE_DIR/tuning/*" 
+ 
     ##### Old tuning command 
     ####$SCRIPTS_ROOTDIR/training/mert-moses.pl \
     ####        "$parallel_corpus/tun.$SRC_LANG" \
