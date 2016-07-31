@@ -13,6 +13,8 @@
 JOB_SCRIPTS_DIR=`dirname $0`
 . "$JOB_SCRIPTS_DIR/moses_env.conf"
 
+MOSES_CMD="$MOSES_DIR/bin/moses_chart"
+
 # commandline parameters 
 run_train=0
 run_tune=0
@@ -136,7 +138,8 @@ then
     ${SCRIPTS_ROOTDIR}/training/filter-model-given-input.pl \
         ${WORKSPACE_DIR}/moses_data/filtered_model \
         ${WORKSPACE_DIR}/tuning/moses-tuned.ini \
-        "$parallel_corpus/test.$SRC_LANG" 
+        "$parallel_corpus/test.$SRC_LANG" \
+        --Hierarchical
 
     final_model_dir=${WORKSPACE_DIR}/moses_data/filtered_model/moses.ini   
 
