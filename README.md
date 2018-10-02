@@ -1,4 +1,4 @@
-#README for Moses Job Scripts
+# README for Moses Job Scripts
 
 **Version 1.0**
 
@@ -7,7 +7,7 @@
 - Testbench to automate Moses-based SMT system training, tuning and evaluation (phrase based and factored)
 - Batch training, tuning and evaluation of Moses models and extraction of results
 
-##Preparing your SMT environment
+## Preparing your SMT environment
 
 - The first task is to install the following software: 
     - Moses 0.91+ 
@@ -27,7 +27,7 @@
    `SMT_SYSTEM_DIR`: The path to the `smt` directory 
    `SMT_METRICS_DIR`: The path to the `smt_eval_metrics` directory 
 
-##Directory layout for SMT software installation
+## Directory layout for SMT software installation
 
 smt  
  |---   giza-pp             (compiled giza++ source code)   
@@ -85,10 +85,10 @@ Once the SMT environment is ready, it is pretty easy to use the workbench for ru
 -  `moses_data/model/moses.ini` : untuned model file
 -  `tuning/moses.ini` : tuned model file
 
-##Batch Operations
+## Batch Operations
 To be documented
 
-##Author
+## Author
 
 Anoop Kunchukuttan ( anoop.kunchukuttan@gmail.com )
 
@@ -96,7 +96,7 @@ Anoop Kunchukuttan ( anoop.kunchukuttan@gmail.com )
 1.0 : Stable release
 
 
-##LICENSE
+## LICENSE
 Copyright Anoop Kunchukuttan 2013 - present
  
 Moses Job Scripts is free software: you can redistribute it and/or modify
