@@ -42,7 +42,7 @@ smt_eval_metrics
  |---  ter                  (TER)  
 
 
-##Using the testbench to train and evaluate a translation system
+## Using the testbench to train and evaluate a translation system
 
 Once the SMT environment is ready, it is pretty easy to use the workbench for running an experiment to train and evaluate a translation system.
 
@@ -92,7 +92,7 @@ To be documented
 
 Anoop Kunchukuttan ( anoop.kunchukuttan@gmail.com )
 
-##Revision Log 
+## Revision Log 
 1.0 : Stable release
 
 
